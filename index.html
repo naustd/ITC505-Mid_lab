@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bike Adventures - Mad Lib</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+
+      header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      section {
+        padding: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #555;
+      }
+      #addendum {
+        margin: 25px;
+      }
+      #myModal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+
+      footer p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Bike Adventures - Mad Lib</h1>
+    </header>
+
+    <section id="mad-lib-form">
+      <h2>Fill in the Blanks</h2>
+      <form id="mad-lib-form">
+        <label for="adjective">Bike Model:</label>
+        <input type="text" id="adjective" name="adjective" required />
+        <label for="noun">Name:</label>
+        <input type="text" id="noun" name="noun" required />
+        <label for="verb">Bike Power:</label>
+        <input type="text" id="verb" name="verb" required />
+        <label for="adverb">Bike Engine:</label>
+        <input type="text" id="adverb" name="adverb" required />
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required />
+        <button type="submit" id="submitBtn">Generate Story</button>
+      </form>
+    </section>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Generated Story</h2>
+        <p id="story"></p>
+      </div>
+    </div>
+    <section id="addendum">
+      <h2>Addendum</h2>
+      <p>
+        Embark on a thrilling adventure with Bike Adventures! Our trails cater
+        to bikers of all levels, from beginners to experienced riders. Explore
+        scenic landscapes, conquer challenging terrains, and experience the joy
+        of biking in nature. Our expert guides ensure a safe and unforgettable
+        journey. Whether you prefer mountain trails, forest paths, or coastal
+        routes, Bike Adventures has something for everyone. Join us today and
+        pedal your way to excitement and discovery!
+      </p>
+    </section>
+    <footer>
+      <p>
+        Last updated:
+        <span id="lastModified"></span>
+      </p>
+    </footer>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("myModal");
+        const btn = document.getElementById("submitBtn");
+        const span = document.getElementsByClassName("close")[0];
+
+        document
+          .getElementById("mad-lib-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            generateStory();
+            modal.style.display = "block";
+          });
+
+        span.onclick = function () {
+          modal.style.display = "none";
+        };
+
+        function generateStory() {
+          const adjective = document.getElementById("adjective").value;
+          const noun = document.getElementById("noun").value;
+          const verb = document.getElementById("verb").value;
+          const adverb = document.getElementById("adverb").value;
+          const location = document.getElementById("location").value;
+
+          const story = `Once upon a time, there was a ${adjective} ${noun} who loved to ${verb} ${adverb} in ${location}. It was an unforgettable adventure!`;
+
+          document.getElementById("story").textContent = story;
+        }
+      });
+
+      var x = document.lastModified;
+      document.getElementById("lastModified").textContent = x;
+    </script>
+  </body>
+</html>
